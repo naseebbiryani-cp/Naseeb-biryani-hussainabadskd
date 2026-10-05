@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naseeb Biryani Center | Delicious Biryani</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #fffaf0;
+            color: #222;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #7b160d;
+            color: white;
+            padding: 12px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+
+        /* === SVG LOGO — WHITE by default, GOLD on hover/click === */
+        .logo svg {
+            height: 55px;
+            width: auto;
+            max-width: 60px;
+            transition: filter 0.35s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .logo svg path,
+        .logo svg circle {
+            fill: #ffffff;
+            stroke: #ffffff;
+            transition: fill 0.35s ease, stroke 0.35s ease;
+        }
+
+        .logo svg .cls-1 {
+            fill: #ffffff;
+            stroke: #ffffff;
+        }
+
+        /* 🟡 Hover par Gold */
+        .logo:hover svg path,
+        .logo:hover svg circle,
+        .logo:hover svg .cls-1 {
+            fill: #ffd166;
+            stroke: #ffd166;
+        }
+
+        /* 🟡 Click par bhi Gold (locked) */
+        .logo.gold svg path,
+        .logo.gold svg circle,
+        .logo.gold svg .cls-1 {
+            fill: #ffd166;
+            stroke: #ffd166;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffd166;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        nav a i {
+            font-size: 14px;
+        }
+
+        /* MOBILE MENU BUTTON */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffd166;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 20px;
+            background:
+                linear-gradient(rgba(60,10,5,.72), rgba(60,10,5,.72)),
+                url("https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 7vw, 75px);
+            color: #ffd166;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero p i {
+            color: #ffd166;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            background: #e63920;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+            transition: .3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #ffb703;
+            color: #222;
+            transform: translateY(-3px);
+        }
+
+        .btn-yellow {
+            background: #ffb703;
+            color: #222;
+        }
+
+        .btn-yellow:hover {
+            background: #e63920;
+            color: white;
+        }
+
+        /* GENERAL */
+        section {
+            padding: 70px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #7b160d;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* MENU */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,.1);
+            transition: .3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.15);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .food-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-info h3 {
+            color: #7b160d;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .food-info h3 i {
+            color: #e63920;
+        }
+
+        .food-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+
+        .price {
+            font-size: 21px;
+            font-weight: bold;
+            color: #e63920;
+            margin-bottom: 12px;
+        }
+
+        .order-now-btn {
+            width: 100%;
+            padding: 12px;
+            background: #7b160d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: .3s;
+            font-size: 15px;
+        }
+
+        .order-now-btn:hover {
+            background: #e63920;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #7b160d;
+            color: white;
+            text-align: center;
+        }
+
+        .about h2 {
+            color: #ffd166;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .feature {
+            background: #fff;
+            padding: 25px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+        }
+
+        .feature i {
+            font-size: 40px;
+            color: #e63920;
+        }
+
+        .feature h3 {
+            margin-top: 10px;
+            color: #7b160d;
+        }
+
+        /* ORDER */
+        .order-box {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.12);
+        }
+
+        .order-box label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #7b160d;
+        }
+
+        .order-box input,
+        .order-box select,
+        .order-box textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .order-box input:focus,
+        .order-box select:focus,
+        .order-box textarea:focus {
+            outline: none;
+            border-color: #7b160d;
+            box-shadow: 0 0 0 3px rgba(123, 22, 13, 0.1);
+        }
+
+        .order-box button {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        /* Selected Items Display */
+        .selected-items {
+            background: #fff3d6;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+
+        .selected-items h4 {
+            color: #7b160d;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .selected-items-list {
+            list-style: none;
+        }
+
+        .selected-items-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .selected-items-list li span {
+            flex: 1;
+        }
+
+        .selected-items-list li .item-price {
+            font-weight: bold;
+            color: #e63920;
+            margin-right: 10px;
+        }
+
+        .selected-items-list li .remove-item {
+            background: #e63920;
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .selected-items-list li .remove-item:hover {
+            background: #c42d18;
+        }
+
+        .empty-cart {
+            color: #999;
+            text-align: center;
+            padding: 10px;
+            font-style: italic;
+        }
+
+        /* REVIEWS */
+        .reviews {
+            background: #fff3d6;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .review {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+        }
+
+        .stars {
+            color: #ffb703;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .review p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .review strong {
+            color: #7b160d;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: .3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,.12);
+        }
+
+        .contact-card i {
+            font-size: 32px;
+            color: #e63920;
+            background: #fff3d6;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card h4 {
+            color: #7b160d;
+            font-size: 15px;
+            margin: 0;
+        }
+
+        .contact-card p {
+            color: #555;
+            font-size: 15px;
+            font-weight: 500;
+            margin: 0;
+            word-break: break-word;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #3d0905;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer span {
+            color: #ffd166;
+        }
+
+        /* WHATSAPP FLOATING */
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25d366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,.3);
+            transition: .3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128c7e;
+        }
+
+        /* CART SIDEBAR */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.5);
+            z-index: 1998;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 420px;
+            max-width: 90vw;
+            height: 100%;
+            background: white;
+            z-index: 1999;
+            transition: .4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 40px rgba(0,0,0,.2);
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            background: #7b160d;
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .cart-close:hover {
+            color: #ffd166;
+        }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            color: #7b160d;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info .cart-item-price {
+            color: #e63920;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .cart-item-qty button {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 50%;
+            background: #7b160d;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .3s;
+        }
+
+        .cart-item-qty button:hover {
+            background: #e63920;
+        }
+
+        .cart-item-qty span {
+            font-weight: bold;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .cart-item-remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e63920;
+            color: white;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: .3s;
+        }
+
+        .cart-item-remove:hover {
+            background: #c42d18;
+            transform: scale(1.1);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 50px 20px;
+            color: #999;
+        }
+
+        .cart-empty i {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #7b160d;
+        }
+
+        .cart-total span:last-child {
+            color: #e63920;
+        }
+
+        .cart-checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: .3s;
+        }
+
+        .cart-checkout-btn:hover {
+            background: #128c7e;
+        }
+
+        /* MORE FOOD OPTION */
+        .more-food-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3d6;
+            border-radius: 10px;
+            border: 2px dashed #ffb703;
+        }
+
+        .more-food-section h4 {
+            color: #7b160d;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .more-food-section select {
+            margin-bottom: 10px;
+        }
+
+        .add-more-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ffb703;
+            color: #222;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: .3s;
+            font-size: 15px;
+        }
+
+        .add-more-btn:hover {
+            background: #e63920;
+            color: white;
+        }
+
+        /* ========================================================= */
+        /*  MOBILE RESPONSIVE                                        */
+        /* ========================================================= */
+        @media(max-width: 700px) {
+            nav {
+                padding: 12px 5%;
+                position: sticky;
+            }
+
+            .logo-text {
+                font-size: 17px;
+            }
+
+            .logo svg {
+                height: 42px;
+                max-width: 48px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #7b160d;
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                box-shadow: 0 5px 15px rgba(0,0,0,.3);
+            }
+
+            nav ul.open {
+                max-height: 400px;
+                padding: 10px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 15px 25px;
+                width: 100%;
+                justify-content: flex-start;
+                border-bottom: 1px solid rgba(255,255,255,.08);
+            }
+
+            nav ul li a i {
+                display: inline-block;
+                width: 20px;
+            }
+
+            .hero {
+                min-height: 85vh;
+                background-size: cover;
+                background-position: center center;
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+                gap: 8px;
+            }
+
+            section {
+                padding: 50px 5%;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .section-subtitle {
+                font-size: 14px;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                max-width: 100%;
+                right: -110%;
+            }
+
+            .cart-sidebar.active {
+                right: 0;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .contact-card {
+                padding: 20px 12px;
+            }
+
+            .contact-card i {
+                font-size: 24px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .contact-card h4 {
+                font-size: 13px;
+            }
+
+            .contact-card p {
+                font-size: 13px;
+            }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+
+        @media(max-width: 400px) {
+            .logo-text {
+                font-size: 15px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo" id="logo" onclick="toggleLogoGold()" title="Click me">
+            <!-- === SVG LOGO — White by default, Gold on hover/click === -->
+            <svg id="LOGO" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3681.62 2908.35">
+                <defs>
+                    <style>
+                        .cls-1{stroke-miterlimit:10;}
+                    </style>
+                </defs>
+                <path d="M996.88,2846.69q23.29-9.29,37.4-24.69,17.9-19.65,17.89-49,0-52.2-40.77-77.73t-115.27-25.52a577.11,577.11,0,0,0-61.31,3.23q-30.21,3.23-50.15,10.27a51.86,51.86,0,0,0-18.19,10.85q-7,6.75-7,19.06v274q0,30.51,32.27,42.83a192.4,192.4,0,0,0,35.2,9.09,375.8,375.8,0,0,0,38.13,4.4q18.76,1.17,32.26,1.17,80.37,0,123.78-28.16t43.41-85.64q0-31.09-17.3-52.21Q1030.13,2857.8,996.88,2846.69Zm-119.82-98.9q11.45-.59,20.24-.59,26.4,0,39.6,9.38t13.2,25.23q0,18.2-11.44,27.57T902,2818.77H859.17v-69.23A150.84,150.84,0,0,1,877.06,2747.79Zm66.88,208.54q-15.56,9.69-39,9.68-11.16,0-24.35-.87a105.63,105.63,0,0,1-21.41-3.23v-71.57h48.1q25.82,0,39,8.21t13.2,27.57Q959.49,2946.67,943.94,2956.33Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M1212.32,2683.26q-12.91-10-42.24-10a180.86,180.86,0,0,0-26.69,2.06q-13.79,2.05-20.83,3.22v312.68q0,27,12.32,37.84t42.83,10.85a213.66,213.66,0,0,0,27.57-1.76,162.88,162.88,0,0,0,19.94-3.52V2722Q1225.22,2693.25,1212.32,2683.26Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M1566.35,2946.07q-12-15.84-25.52-32.85-5.86-7.41-11.62-14.93a135.74,135.74,0,0,0,43-38.46q20.23-28.15,20.24-63.94,0-57.49-41.07-91.81t-122-34.32a465.19,465.19,0,0,0-56.32,3.23q-26.38,3.23-46.34,10.27a52,52,0,0,0-18.19,10.85q-7,6.75-7,19.06v278.07q0,27,12.32,37.84t42.83,10.85a213.66,213.66,0,0,0,27.57-1.76,163.49,163.49,0,0,0,20-3.52V2920.26h31.18l49.77,80.37q11.14,18.18,24.35,29.33t38.42,11.14a58.55,58.55,0,0,0,34.91-11.14q15.53-11.14,21.41-31.09a277.21,277.21,0,0,0-15.84-23.47Q1578.38,2961.92,1566.35,2946.07ZM1403,2754.24q6.45-1.17,12.32-1.76t13.49-.59q31.1,0,45.47,11.44t14.37,33.73q0,22.3-15.84,33.73t-40.48,11.44H1403Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M1920.68,2688.83q-14.37-10.85-34.9-10.85a111.46,111.46,0,0,0-24.64,2.93,103.8,103.8,0,0,0-23.47,8.21q-11.14,27.59-19.65,49.57t-17,42.53q-8.51,20.55-19.65,45.18h-3.52q-6.46-12.9-12.91-25.82t-12.9-26.1q-6.46-13.2-12.91-26.11t-12.91-25.81q-12.9-25.8-27.28-35.2t-37.25-9.38q-19.35,0-32.56,8.8t-20.82,19.35a491.28,491.28,0,0,0,24,50.75q15.26,28.45,33.15,59t36.07,58.95q15.33,24,28.16,43.18v74.44q0,26.4,11.74,37t42.23,10.56a202.37,202.37,0,0,0,26.7-1.76,163.32,163.32,0,0,0,19.65-3.52V2919.28q32.17-51.92,52.5-86.43,21.4-36.37,32.85-58.37t15.55-34q4.1-12,4.11-19.06Q1935.06,2699.69,1920.68,2688.83Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M2234.54,2863.65q-12.63-43.7-24.64-83.89t-22.59-70.11q-5.86-18.77-28.74-27.28t-52.21-8.5a162,162,0,0,0-40.48,5.28q-20.55,5.28-30.51,11.15-4.69,12.32-14.08,38.42t-20.82,59q-11.45,32.85-22.88,67.17t-20.83,63.94q-9.39,29.63-14.08,48.4-2.94,11.14-5.28,19.36a59.71,59.71,0,0,0-2.34,16.42q0,18.2,14.66,28.45t44,10.27a93.05,93.05,0,0,0,22.29-2.35q9.39-2.34,17-4.69,2.33-8.79,4.69-18.19t5-19.35q2.64-10,5.28-21.12c1.13-4.8,2.44-9.71,3.82-14.67H2158l10.54,40.48q5.28,19.95,16.43,29.62t39.89,9.68q19.35,0,33.43-5.28t21.12-12.9q-8.79-32.85-20.53-74.21T2234.54,2863.65ZM2094,2801.76q6.45-19.37,11.73-35.79h3.52q4.7,15.84,10,34.91t11.15,40.18q5.48,19.76,11,41.07h-73q5.83-20.39,12.14-39.6Q2087.59,2821.13,2094,2801.76Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M2596.78,2673.28a195.38,195.38,0,0,0-26.39,1.76q-12.91,1.77-19.36,2.94v92.68q0,31.11.29,65.71.25,30.12,2.95,65.11l-2.66.59q-5.28-14.09-10.26-25.81t-10-22.88q-5-11.13-10.85-22.88L2461.86,2712q-11.74-24-31.39-30.8a126.73,126.73,0,0,0-41.36-6.74,111.11,111.11,0,0,0-36.37,5.86q-17,5.88-25.22,17.6V2993q0,26.4,11.73,36.67t41.06,10.26a202.37,202.37,0,0,0,26.7-1.76q13.2-1.76,19.06-2.93v-136.4q0-22-.88-46.63-.68-18.86-2.21-39.09l3.68-.8q5.85,14.07,10.56,25.81t9.68,22.58q5,10.86,10.85,23.18l58.08,118.5q12.32,24.63,31.68,31.09a129,129,0,0,0,41.06,6.45q21.69,0,37.25-4.69t23.76-12.32V2720.21q0-26.4-11.73-36.66T2596.78,2673.28Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M2815.59,2683.26q-12.9-10-42.24-10a181.07,181.07,0,0,0-26.69,2.06q-13.78,2.05-20.82,3.22v312.68q0,27,12.31,37.84t42.83,10.85a213.55,213.55,0,0,0,27.57-1.76,163.12,163.12,0,0,0,19.95-3.52V2722Q2828.5,2693.25,2815.59,2683.26Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M3175.19,2812.9l-31.09-10q-14.67-4.69-22.58-10.27t-7.92-14.37q0-11.13,12.31-18.48t38.72-7.33a173.47,173.47,0,0,1,47.52,6.16q21.7,6.17,34.61,14.37a71.34,71.34,0,0,0,17-18.77q7-11.14,7-25.81,0-20.54-15.26-33.73T3213.91,2675q-26.4-6.45-60.42-6.45-69.24,0-107.65,29.92t-38.42,79.78q0,34,14.66,55.15t40.77,34.31a479.57,479.57,0,0,0,60.13,24.93l24.64,8.22q17,5.86,26.4,12.61a21.56,21.56,0,0,1,9.38,18.48q0,11.75-11.73,21.12t-40.47,9.38q-28.17,0-51.92-9.38t-40.19-22.29a76,76,0,0,0-21.7,18.47q-10,12-10,29,0,21.72,17,37t45.75,22.88q28.74,7.62,64.54,7.63,75.68,0,115.27-31.39t39.6-81.25q0-46.92-29.33-74.79T3175.19,2812.9Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M3650.37,2683.84q-12.91-10.56-42.24-10.56a180.86,180.86,0,0,0-26.69,2.06q-13.8,2.05-20.83,3.22V2817H3448v-95q0-28.72-12.91-38.71t-42.24-10a180.86,180.86,0,0,0-26.69,2.06q-13.79,2.05-20.83,3.22v312.68q0,27,12.32,37.84t42.83,10.85a213.66,213.66,0,0,0,27.57-1.76,163.49,163.49,0,0,0,19.95-3.52V2898h112.63v93.27q0,27,12.32,37.84t42.82,10.85a213.7,213.7,0,0,0,27.58-1.76,163.25,163.25,0,0,0,19.94-3.52v-311.5Q3663.27,2694.41,3650.37,2683.84Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M4001.76,2690.3q-42.24-21.71-94.45-21.71t-94.15,21.71q-42,21.7-66.59,63.64t-24.64,103q0,61,24.06,103.25t66,63.94q41.94,21.7,95.33,21.71t95.33-21.71q41.94-21.69,66.29-63.94t24.35-103.25q0-61-24.64-103T4001.76,2690.3ZM3966,2936.68q-21.72,26.4-58.08,26.4t-58.37-26.4q-22-26.4-22-79.78,0-52.8,22-79.2t57.78-26.39q37,0,58.67,26.69t21.7,78.9Q3987.68,2910.29,3966,2936.68Z" transform="translate(-759.44 -137.45)"/>
+                <path class="cls-1" d="M4397.44,2704.37q-43.12-34.6-123.49-34.61a428.66,428.66,0,0,0-49.27,3.23q-27.59,3.23-47.52,10.27a52,52,0,0,0-18.19,10.85q-7,6.75-7,19.06v278.07q0,27,12.32,37.84t42.83,10.85a213.66,213.66,0,0,0,27.57-1.76,162.88,162.88,0,0,0,19.94-3.52V2925h34q46.34,0,80.37-15.84t52.8-44.29q18.77-28.46,18.77-66.58Q4440.56,2739,4397.44,2704.37Zm-76.26,128.18q-15,12-39,12H4254v-90.93a97,97,0,0,1,12.61-1.46q6.16-.3,15.55-.3,26.4,0,40.18,12t13.79,34.32Q4336.14,2820.53,4321.18,2832.55Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M2998.13,1599.73h62.42a23.63,23.63,0,0,0,0-47.25h-62.42a23.63,23.63,0,0,0,0,47.25Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M3077,1656.05a23.63,23.63,0,0,0,23.63,23.63H3163a23.63,23.63,0,1,0,0-47.26h-62.41A23.63,23.63,0,0,0,3077,1656.05Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M2981.72,1656.05a23.63,23.63,0,0,0-23.63-23.63h-62.41a23.63,23.63,0,1,0,0,47.26h62.41A23.63,23.63,0,0,0,2981.72,1656.05Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M3084.17,1748a23.63,23.63,0,0,0-23.62-23.63h-62.42a23.63,23.63,0,0,0,0,47.26h62.42A23.63,23.63,0,0,0,3084.17,1748Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M2847,1724.35h-62.41a23.63,23.63,0,0,0,0,47.26H2847a23.63,23.63,0,1,0,0-47.26Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M3211.73,1771.61h62.41a23.63,23.63,0,0,0,23.63-23.63h0a23.63,23.63,0,0,0-23.63-23.63h-62.41A23.63,23.63,0,0,0,3188.1,1748h0A23.63,23.63,0,0,0,3211.73,1771.61Z" transform="translate(-759.44 -137.45)"/>
+                <circle cx="2318.52" cy="799.83" r="49.06" transform="translate(-833.67 1200.92) rotate(-31.72)"/>
+                <circle cx="2561.1" cy="776.47" r="47.07" transform="translate(-822.78 1162.9) rotate(-28.15)"/>
+                <path d="M2342.91,934.34c-21.78,0-35.64,23.41-25,42.45a150,150,0,0,0,262.44,0c10.59-19-3.27-42.45-25.06-42.45h0a28.58,28.58,0,0,0-25,14.73,92.82,92.82,0,0,1-162.34,0A28.6,28.6,0,0,0,2342.91,934.34Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M3682.69,1491.14c-30.48-5.58-49.62,6.94-71.52,25.38-61.66,51.94-190.65,188.07-191.85,187.14-3.29-19.47-11.8-46.94-48.89-45.26,1.8-34.34-57.44-72.13-89-69.62,3-37.76-36.67-61.45-72.16-55.76.27-39.15-34.65-63.67-72.21-59.07-12.14-104-175-110.61-193.75-6.7-36.39-4.27-69.54,15.06-75.72,52.26-49.28-7-85.77,23-88.28,72.58-45.29-11.44-79.47,33.91-88.37,74.05-49.17-.79-89.26,33.18-88.79,83.5-42.24-5.17-70.94,25.08-75.93,65.2-56.78-3.91-72.86,39.86-51.6,86.9,6.71,14.84,16.45,21.26,22.48,34.92l-70.5.26c-1-18.78-14.6-36.29-17.31-55.17-5.36-37.34,5.57-73.82,37.49-95.49,9.1-6.18,32.3-12.64,37.4-18.4s9.06-23.4,16.22-33c16-21.49,39.62-23.69,50.78-34.55,4.92-4.79,12.35-25.84,18.05-34.46,15.64-23.66,37.67-37.26,63.35-48.23,6.14-2.63,14.25-1.55,18.75-4.22,2.65-1.58,23.28-40.64,34.4-50.93s55.2-30.61,57.22-38.25c3.82-14.43-52-54-64.31-62.79-39.23-28-84.8-54.26-128.62-73.17l2.91-35.74c75.63,36.61,151.52,75.84,215.39,131l60.24-30.84c-82.91-66.43-179.28-114.37-274.92-159.93-5.4-30.45-16.16-60.5-33.53-86.25,96.62-32.23,166.65-116.86,174-219.72,7.24-100.81,6-253.23,0-354.72-1.34-22.69-12.33-58.86-10.24-78.66,1.29-12.27,25.21-40.56,31.37-57.42,14.3-39.19,8.53-109.38-18-142.71-32.54-40.86-49.59,8-67.35,11.41L2566.45,361c-8.93-5.49-44.34-164.31-73.81-195.31-40.67-42.79-145.74-27.12-199.13-16-157.75,32.74-334.77,130.24-436.28,256.18-34.24,42.49-66.7,93.37-41.24,149.36l155.56,215.62c2.93,12.49-10.47,20-15.37,29.34-55.82,106,13.94,231,134.11,232.28l18.52,58.63-56.41,182.71c-105.37,42.81-211.47,89.36-310.19,146-112.15,64.32-174.09,158.55-187.13,288.73,10.89,174-29.85,365.66,42.2,529.1,40.32,91.44,98.55,154.38,177.17,208.4H1536.91a48.87,48.87,0,0,0-48.87,48.88h0a48.87,48.87,0,0,0,48.87,48.87H3599.08a48.87,48.87,0,0,0,48.87-48.87h0a48.87,48.87,0,0,0-48.87-48.88H3389.63c76.26-64.46,116.56-154.84,118.6-256.24,75.73-13.61,125-88.8,105.66-163.78-15.16-58.71-63.9-97-125.68-89.28l24.22-33.17c8.53-18.25,14.61-35.22,10.4-55.62-2.37-11.42-11.74-21.6-14.22-31.7-2.69-10.94.58-23.29-6.63-34.85,26-35.1,203-207.23,208.62-234.27C3715.32,1524.26,3708.2,1495.82,3682.69,1491.14ZM2663.5,1794.66c1.39-.4,7.18-4.73,12.69-9.21a54.79,54.79,0,0,1,72.57-78.81,54.79,54.79,0,0,1,65.66-68.31,54.8,54.8,0,0,1,89.39-50,54.7,54.7,0,0,1,62.93-66.7,65,65,0,0,1-.34-6.58,62.94,62.94,0,0,1,125.88,0,62.19,62.19,0,0,1-.35,6.58,54.79,54.79,0,0,1,62.94,66.7,54.81,54.81,0,0,1,89.39,50,54.8,54.8,0,0,1,65.66,68.31,54.79,54.79,0,0,1,72.57,78.81c5.51,4.48,11.29,8.81,12.69,9.21,16.37,4.69,49.55-15.72,61.11,18.6l-426.95-.08-427,.08C2614,1778.94,2647.13,1799.35,2663.5,1794.66Zm-223.84,191.25h70.56l-16.51,36.1c-55-14.31-72.05,53.29-26.17,80.42l-6.59,3.26,6.82,3.46-6.81,27.72c-53.83-15.63-84.28-68.21-57.07-121.1C2408.8,2006.23,2430.17,1985.91,2439.66,1985.91ZM2655.17,458.78l12.53-28.42c18.38,52.65-34.07,97.77-82,105C2612.35,512.91,2638,489.66,2655.17,458.78Zm-56.36-41.55c1.69,7.7-1,5.27-4.22,7.34-51.2,33.27-156.53,23-215.63,22.14-.77-4.71,5.69-4.44,9.14-5.55,31.53-10.13,113.79-32,144.35-32.91C2553.76,407.6,2577.09,418.48,2598.81,417.23Zm-631.76-.59c-28.91-22.38-16.76-30.84,4.92-50.34,96.47-86.75,320.08-191.18,450.35-174.61,42.32,5.38,43.25,37.08,56,72,4.18,11.46,29.59,83.56,25.37,87.86l-28-3.22-44.12-116.7c-58.31-6.94-117.88,6.8-173.29,23.88C2151,288.63,2055.23,348.6,1967.05,416.64ZM2014.58,944c-55-60-13.51-182.62,74.65-156.69,24.19,7.11,44.55,44.29,52.45,46.31,26.35,6.74,19.82-59.6,22.79-74.65,5.24-26.61,26.78-53.78,30.42-81.16,3.47-26.11-.14-56.81-12.85-80.09,82.79,31.38,176.24,34.64,264.32,29.64,61.87-3.51,131.63-18.26,185.25-49.36.83,16.66,8.57,30.54,10,47.46,9.83,116.4-7.55,246.49-.17,364.35-34.16,221.24-298.22,197.5-436.4,90.3-1,5.53,186.85,192.68,190.11,205.12l-17.83,24.59c-54.88-56.07-136-77.78-190.41-134.39-43.31-45-20.22-45.1-25-96.57-3.29-35.76-20.53-74.61-25.86-110.35C2091.32,985.68,2047.57,980,2014.58,944Zm331.52,451.16c-21.94-25.61-193.68-111.62-193.72-136.2l13.32-21.32,147.65,90.2C2334.56,1344.71,2344.67,1368.2,2346.1,1395.18Zm-676.58,858.75c-80.34-142.8-57.39-273.9-58.36-430.63-.65-106.58-10.06-186,62.3-275.42,14.24-17.59,69.8-71.78,90.43-73.93,16.08-1.67,75.22,26.85,91,36.72,199,124.47,137.77,356.47,146,555-86.85,96.63-141.31,219.53-176.58,343.62C1760,2378.89,1704.22,2315.62,1669.52,2253.93Zm247.93,192c-13.63-4.11-27.07-8.81-40.22-14.16,20.94-91.41,62.25-188.61,115.07-266.43,9.13-13.46,46.77-64.3,58.58-69.64,13-5.89,143.16,72.13,167.13,77.39.9,3.6.11,6.41-1.56,9.63-10.21,19.63-29.68,42.2-41.54,63.5-35.14,63.13-62.09,131.23-85.3,199.71ZM2950,2426.46c-13.61,15.89-70.88,7.61-93.72,8.92-12.22.69-24.33,5.27-37.31,3.72l-2.24,6.86H2151.08c24.34-85.5,65.61-165.46,113.36-239.92l215.7,108.57,2.17,42.12c13.28-11.53,28.16-22.57,41.08-34.39,62.83-57.49,112.73-130.44,200.11-151a61,61,0,0,1,7.93-1.31c28.93-2.86,34.23,40.33,5.57,45.2-29.56,5-35.52,31.42-20.58,29.39,23.35-3.18,86.7-24.39,110.49-21.69,41.3,4.69,44.77,54.61,2.38,62-35.16,6.12-107.81-5.56-125.53,27.77a31.4,31.4,0,0,1,10.75-3.11l162.22-16.29a31.43,31.43,0,1,1,6.28,62.55l-162.21,16.3c-.84.08-1.66.1-2.49.12,6.2,2.65,13.89,3.61,23.15,4.33,57.18,4.48,128.84-7.6,183.61.18C2949,2380.14,2968.8,2404.53,2950,2426.46Zm461-506.18-833.72.13c-14.72,1-38-9.05-46.11-21-3.83-5.63-17.86-34.89-6.26-34.89h940.23C3467.64,1897.25,3440.56,1915.57,3411.08,1920.28Zm105,65.63c71.6,11.94,60.86,139.34-9.59,151.06l-8.7-37.47c50.35-20.55,23.58-93.63-29.28-77.48l-13.15-36.11C3474,1988.07,3498.39,1983,3516.09,1985.91ZM3655,1578.6l-173.9,171.51-31.48-33.1,173.9-171.51a22.84,22.84,0,0,1,32.29.82h0A22.83,22.83,0,0,1,3655,1578.6Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M2255.11,726.83h0a24.28,24.28,0,0,0,11.31-5.56,76.32,76.32,0,0,1,74.72-14,24.37,24.37,0,0,0,12.55,1.08h0c23.36-4.38,26.32-37,4-45.1a123.15,123.15,0,0,0-122.58,23C2217.16,701.85,2231.75,731.21,2255.11,726.83Z" transform="translate(-759.44 -137.45)"/>
+                <path d="M2512.66,700.83a23.25,23.25,0,0,0,11.79-2.62A73.24,73.24,0,0,1,2597.3,702a23.31,23.31,0,0,0,11.45,3.84h0c22.77,1.2,32.91-28.57,13.89-41.16a118.18,118.18,0,0,0-119.49-6.28C2482.92,669,2489.88,699.63,2512.66,700.83Z" transform="translate(-759.44 -137.45)"/>
+            </svg>
+            <span class="logo-text">Naseeb Biryani</span>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul id="navMenu">
+            <li><a href="#home" onclick="closeMenu()"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#menu" onclick="closeMenu()"><i class="fas fa-utensils"></i> Menu</a></li>
+            <li><a href="#about" onclick="closeMenu()"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="#order" onclick="closeMenu()"><i class="fas fa-shopping-cart"></i> Order</a></li>
+            <li><a href="#contact" onclick="closeMenu()"><i class="fas fa-phone"></i> Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Naseeb Biryani Center</h1>
+
+            <p>
+                <i class="fas fa-utensils"></i> Delicious Biryani
+                <i class="fas fa-star"></i> Fresh Ingredients
+                <i class="fas fa-thumbs-up"></i> Best Taste
+            </p>
+
+            <a href="#menu" class="btn"><i class="fas fa-book-open"></i> View Menu</a>
+            <a href="#order" class="btn btn-yellow"><i class="fas fa-shopping-bag"></i> Order Now</a>
+        </div>
+    </section>
+
+
+    <!-- MENU -->
+    <section id="menu">
+        <h2 class="section-title">Our Special Menu</h2>
+        <p class="section-subtitle">Every plate has Naseeb taste!</p>
+
+        <div class="menu-grid">
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80" alt="Chicken Biryani">
+                <div class="food-info">
+                    <h3> Chicken Biryani</h3>
+                    <p>Fresh chicken with special spices.</p>
+                    <div class="price">Rs. 400</div>
+                    <button class="order-now-btn" onclick="addToCart('Chicken Biryani Full', 400)">
+                         Order Now
+                    </button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/050/436/015/small_2x/flavorful-mutton-biryani-served-boiled-eggs-and-raita-garnished-with-fresh-herbs-and-fried-onions-photo.jpg" alt="Beef Biryani">
+                <div class="food-info">
+                    <h3> Beef Biryani</h3>
+                    <p>Soft beef, aromatic rice and special masala.</p>
+                    <div class="price">Rs. 450</div>
+                    <button class="order-now-btn" onclick="addToCart('Beef Biryani', 450)">
+                        </i> Order Now
+                    </button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/049/368/233/small_2x/tibetian-dumplings-momo-with-chicken-meat-or-vegetables-photo.jpg" alt="Momos">
+                <div class="food-info">
+                    <h3> Momos</h3>
+                    <p>Special steamed momos.</p>
+                    <div class="price">Rs. 300</div>
+                    <button class="order-now-btn" onclick="addToCart('Momos', 300)">
+                         Order Now
+                    </button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/024/613/917/small/freshly-cooked-vegetarian-meal-in-a-rustic-bowl-with-vegetables-generated-by-ai-photo.jpg" alt="Chana Chaat">
+                <div class="food-info">
+                    <h3> Chana Chaat</h3>
+                    <p>Fresh and tangy chaat.</p>
+                    <div class="price">Rs. 150</div>
+                    <button class="order-now-btn" onclick="addToCart('Chana Chaat', 150)">
+                        <i class="fas fa-cart-plus"></i> Order Now
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <h2 class="section-title">About Our Biryani</h2>
+
+        <p>
+            At Naseeb Biryani Center, we prepare delicious biryani using fresh ingredients,
+            quality rice, and special spices. Our goal is to provide every customer with
+            the best taste and quality.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <i class="fas fa-seedling"></i>
+                <h3>Fresh Rice</h3>
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-pepper-hot"></i>
+                <h3>Special Masala</h3>
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-utensils"></i>
+                <h3>Expert Chef</h3>
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-heart"></i>
+                <h3>Made With Love</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ORDER -->
+    <section id="order">
+
+        <h2 class="section-title">Place Your Order</h2>
+
+        <p class="section-subtitle">
+            Fill in the details below and send your order via WhatsApp.
+        </p>
+
+        <div class="order-box">
+
+            <form id="orderForm">
+
+                <label>Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+
+                <label>Phone Number</label>
+                <input type="tel" id="phone" placeholder="03XXXXXXXXX" required>
+
+                <label>Your Order Items</label>
+                <div class="selected-items" id="selectedItems">
+                    <p class="empty-cart">No items selected yet. Add items from the menu or below.</p>
+                </div>
+
+                <div class="more-food-section">
+                    <h4><i class="fas fa-plus-circle"></i> Add More Food</h4>
+                    
+                    <select id="moreFoodSelect">
+                        <option value="">-- Select Food Item --</option>
+                        <option value="Chicken Biryani Full|400">Chicken Biryani Full - Rs. 400</option>
+                        <option value="1kg Biryani with 2 Pcs Chicken|1000">1kg Biryani with 2 Pcs Chicken - Rs. 1000</option>
+                        <option value="1kg Biryani|2000">1kg Biryani - Rs. 2000</option>
+                        <option value="1kg Beef Pulao|2500">1kg Beef Pulao - Rs. 2500</option>
+                        <option value="Momos Biryani|350">Momos Biryani - Rs. 350</option>
+                        <option value="Chicken Biryani Half|300">Chicken Biryani Half - Rs. 300</option>
+                        <option value="Sada Biryani Full|300">Sada Biryani Full - Rs. 300</option>
+                        <option value="Sada Biryani Half|250">Sada Biryani Half - Rs. 250</option>
+                        <option value="Extra Boti|200">Extra Boti - Rs. 200</option>
+                        <option value="Bottle 1L|200">Bottle 1L - Rs. 200</option>
+                        <option value="Bottle 1.5L|250">Bottle 1.5L - Rs. 250</option>
+                        <option value="Bottle 345mL|100">Bottle 345mL - Rs. 100</option>
+                    </select>
+
+                    <button type="button" class="add-more-btn" onclick="addMoreFood()">
+                        <i class="fas fa-cart-plus"></i> Add to Order
+                    </button>
+                </div>
+
+                <label>Delivery Address</label>
+                <textarea id="address" rows="4" placeholder="Enter your address" required></textarea>
+
+                <button type="submit" class="btn">
+                    <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- REVIEWS -->
+    <section class="reviews">
+
+        <h2 class="section-title">Customer Reviews</h2>
+
+        <p class="section-subtitle">What our customers say about us?</p>
+
+        <div class="review-grid">
+
+            <div class="review">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"Ordered for the whole family. Everyone loved it!"</p>
+                <strong>— Ali</strong>
+            </div>
+
+            <div class="review">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"Fast service and delicious biryani. Definitely recommended!"</p>
+                <strong>— Ahmed</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+        <h2 class="section-title">Contact Us</h2>
+
+        <p class="section-subtitle">
+            Contact us for orders or information.
+        </p>
+
+        <div class="contact-grid">
+
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h4>Phone</h4>
+                <p>03455442822</p>
+            </div>
+
+            <div class="contact-card">
+                <i class="fab fa-whatsapp"></i>
+                <h4>WhatsApp</h4>
+                <p>03555932735</p>
+            </div>
+
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Address</h4>
+                <p>Hussainabad Near Himaliya Hotel Skardu</p>
+            </div>
+
+            <div class="contact-card">
+                <i class="fas fa-clock"></i>
+                <h4>Timing</h4>
+                <p>10:00 AM - 11:30 PM</p>
+            </div>
+
+        </div>
+
+        <br>
+
+        <a href="https://wa.me/923181762314" target="_blank" class="btn">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            © 2026 <span>Naseeb Biryani Center</span>.
+            All Rights Reserved.
+        </p>
+    </footer>
+
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/923181762314" target="_blank" class="whatsapp-float" title="Order on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Your Order</h2>
+            <button class="cart-close" onclick="closeCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-body" id="cartBody">
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">Rs. 0</span>
+            </div>
+            <button class="cart-checkout-btn" onclick="checkoutFromCart()">
+                <i class="fab fa-whatsapp"></i> Order on WhatsApp
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // ================================================================
+        // LOGO — Toggle Gold on Click (White is default)
+        // ================================================================
+        function toggleLogoGold() {
+            const logo = document.getElementById('logo');
+            
+            // Toggle gold state
+            logo.classList.toggle('gold');
+            
+            // Pulse animation
+            logo.style.transform = 'scale(1.12)';
+            setTimeout(() => {
+                logo.style.transform = '';
+            }, 180);
+        }
+
+        // ================================================================
+        // MOBILE MENU TOGGLE
+        // ================================================================
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            const icon = document.querySelector('#menuToggle i');
+            
+            menu.classList.toggle('open');
+            
+            if (menu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('navMenu');
+            const icon = document.querySelector('#menuToggle i');
+            menu.classList.remove('open');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('menuToggle');
+            
+            if (window.innerWidth <= 700 && menu.classList.contains('open')) {
+                if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+                    closeMenu();
+                }
+            }
+        });
+
+        // ================================================================
+        // CART FUNCTIONALITY
+        // ================================================================
+        let cart = [];
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: name, price: price, quantity: 1 });
+            }
+            
+            updateCartUI();
+            openCart();
+        }
+
+        function addMoreFood() {
+            const select = document.getElementById('moreFoodSelect');
+            const value = select.value;
+            
+            if (!value) {
+                alert('Please select a food item first.');
+                return;
+            }
+            
+            const [name, priceStr] = value.split('|');
+            const price = parseInt(priceStr);
+            
+            addToCart(name, price);
+            select.value = '';
+        }
+
+        function updateCartUI() {
+            const cartBody = document.getElementById('cartBody');
+            const cartTotal = document.getElementById('cartTotal');
+            const selectedItems = document.getElementById('selectedItems');
+            
+            if (cart.length === 0) {
+                cartBody.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Your cart is empty</p>
+                        <p style="font-size: 13px;">Add items from the menu</p>
+                    </div>
+                `;
+                cartTotal.textContent = 'Rs. 0';
+                selectedItems.innerHTML = '<p class="empty-cart">No items selected yet. Add items from the menu or below.</p>';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-price">Rs. ${item.price} x ${item.quantity} = Rs. ${itemTotal}</div>
+                            <div class="cart-item-qty">
+                                <button onclick="changeQty(${index}, -1)"><i class="fas fa-minus"></i></button>
+                                <span>${item.quantity}</span>
+                                <button onclick="changeQty(${index}, 1)"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartBody.innerHTML = html;
+            cartTotal.textContent = `Rs. ${total}`;
+            
+            let selectedHtml = '<ul class="selected-items-list">';
+            cart.forEach((item, index) => {
+                selectedHtml += `
+                    <li>
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span class="item-price">Rs. ${item.price * item.quantity}</span>
+                        <button type="button" class="remove-item" onclick="removeFromCart(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </li>
+                `;
+            });
+            selectedHtml += '</ul>';
+            selectedItems.innerHTML = selectedHtml;
+        }
+
+        function changeQty(index, change) {
+            cart[index].quantity += change;
+            
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('cartOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('active');
+            document.getElementById('cartOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function checkoutFromCart() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add items first.');
+                return;
+            }
+            
+            closeCart();
+            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Please add at least one item to your order.');
+                return;
+            }
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            
+            let itemsList = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                itemsList += `• ${item.name} x ${item.quantity} = Rs. ${itemTotal}%0A`;
+            });
+            
+            const message =
+                "*🍛 Naseeb Biryani Center - New Order*%0A%0A" +
+                "*Customer Details:*%0A" +
+                "Name: " + name + "%0A" +
+                "Phone: " + phone + "%0A" +
+                "Address: " + address + "%0A%0A" +
+                "*Order Items:*%0A" +
+                itemsList + "%0A" +
+                "*Total: Rs. " + total + "*%0A%0A" +
+                "Thank you for your order!";
+            
+            const whatsappNumber = "923181762314";
+            const whatsappURL = "https://wa.me/" + whatsappNumber + "?text=" + message;
+            
+            window.open(whatsappURL, "_blank");
+        });
+
+        updateCartUI();
+    </script>
+     <!-- add section -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Digital & Software Services - Ad</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== OVERLAY ===== */
+        .ad-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0.3s, opacity 0.3s ease;
+            padding: 15px;
+            overflow-y: auto;
+            font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
+        }
+
+        .ad-overlay.hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        /* ===== AD BOX ===== */
+        .ad-box {
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            padding: 0;
+            border-radius: 24px;
+            max-width: 340px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: white;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(59, 130, 246, 0.15);
+            overflow: hidden;
+        }
+
+        /* Animated top border glow */
+        .ad-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #3b82f6, #8b5cf6, #fbbf24);
+            background-size: 300% 100%;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* ===== CLOSE BUTTON ===== */
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-btn:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+            transform: rotate(90deg);
+        }
+
+        /* ===== HEADER SECTION ===== */
+        .ad-header {
+            padding: 28px 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background circles */
+        .ad-header::before,
+        .ad-header::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .ad-header::before {
+            width: 150px;
+            height: 150px;
+            background: #3b82f6;
+            top: -60px;
+            right: -40px;
+            animation: floatCircle 6s ease-in-out infinite;
+        }
+
+        .ad-header::after {
+            width: 100px;
+            height: 100px;
+            background: #fbbf24;
+            bottom: -30px;
+            left: -30px;
+            animation: floatCircle 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatCircle {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        /* ===== BADGE ===== */
+        .services-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0f172a;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-badge i {
+            font-size: 11px;
+        }
+
+        /* ===== MAIN HEADING ===== */
+        .ad-content h2 {
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ad-content h2 .highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        /* ===== SUBTITLE ===== */
+        .ad-subtitle {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+            padding: 0 10px;
+        }
+
+        /* ===== SERVICES GRID ===== */
+        .services-grid {
+            padding: 0 20px 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 8px;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .service-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(251, 191, 36, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .service-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+        }
+
+        .service-icon.blue {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .service-icon.purple {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        .service-icon.green {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        .service-icon.orange {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+        }
+
+        .service-item .service-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #e2e8f0;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* ===== FEATURES LIST ===== */
+        .features-list {
+            padding: 0 20px 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        .feature-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(16, 185, 129, 0.4);
+        }
+
+        .feature-text {
+            font-weight: 500;
+            text-align: left;
+            flex: 1;
+        }
+
+        /* ===== CTA BUTTONS ===== */
+        .cta-section {
+            padding: 0 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* WhatsApp Button */
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp:active {
+            transform: translateY(0);
+        }
+
+        /* Instagram Button */
+        .btn-instagram {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            color: white;
+            box-shadow: 0 8px 20px rgba(131, 58, 180, 0.3);
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(131, 58, 180, 0.5);
+        }
+
+        .btn-instagram:active {
+            transform: translateY(0);
+        }
+
+        .btn-main i {
+            font-size: 18px;
+        }
+
+        .btn-main .btn-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+
+        .btn-main .btn-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .btn-main .btn-sub {
+            font-size: 10px;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+
+        /* ===== FOOTER ===== */
+        .ad-footer {
+            padding: 12px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 10px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ad-footer i {
+            color: #fbbf24;
+            font-size: 10px;
+        }
+
+        /* ===== ANIMATION ===== */
+        @keyframes pop {
+            0% { 
+                transform: scale(0.85) translateY(20px); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: scale(1) translateY(0); 
+                opacity: 1; 
+            }
+        }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 380px) {
+            .ad-box {
+                max-width: 100%;
+            }
+            
+            .ad-content h2 {
+                font-size: 20px;
+            }
+            
+            .ad-content h2 .highlight {
+                font-size: 17px;
+            }
+            
+            .services-grid {
+                padding: 0 15px 12px;
+            }
+            
+            .features-list {
+                padding: 0 15px 12px;
+            }
+            
+            .cta-section {
+                padding: 0 15px 15px;
+            }
+            
+            .ad-header {
+                padding: 24px 15px 18px;
+            }
+        }
+
+        /* Smooth scroll for long ads */
+        .ad-overlay::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .ad-overlay::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+    </style>
+
+
+    <!-- ===== AD OVERLAY ===== -->
+    <div id="adOverlay" class="ad-overlay">
+        <div class="ad-box">
+            <!-- Close Button -->
+            <button class="close-btn" id="closeAdBtn" title="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Header -->
+            <div class="ad-header">
+                <div class="services-badge">
+                    <i class="fas fa-bolt"></i>
+                    DIGITAL SERVICES
+                </div>
+                
+                <div class="ad-content">
+                    <h2>
+                        Graphic Design & 
+                        <span class="highlight">Software Services</span>
+                    </h2>
+                    <p class="ad-subtitle">
+                        Print se Website tak — sab kuch ek jagah!
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon blue">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <div class="service-label">Print Design</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon purple">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="service-label">Website Design</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon green">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="service-label">Google Setup</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon orange">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <div class="service-label">Digital & Software</div>
+                </div>
+            </div>
+            
+            <!-- Features -->
+            <div class="features-list">
+                <div class="feature-row">
+                    <div class="feature-check"><i class="fas fa-check"></i></div>
+                    <div class="feature-text">Logos, Banners, Flyers, Business Cards</div>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-check"><i class="fas fa-check"></i></div>
+                    <div class="feature-text">Website Design & Development</div>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-check"><i class="fas fa-check"></i></div>
+                    <div class="feature-text">Google Business Profile & SEO</div>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-check"><i class="fas fa-check"></i></div>
+                    <div class="feature-text">Custom Software & Digital Solutions</div>
+                </div>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="cta-section">
+                <!-- WhatsApp Button -->
+                <button class="btn-main btn-whatsapp" id="whatsappBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    <div class="btn-text">
+                        <span class="btn-title">Whatsapp</span>
+                        <span class="btn-sub">0349 8436676</span>
+                    </div>
+                </button>
+                
+                <!-- Instagram Button -->
+                <button class="btn-main btn-instagram" id="instagramBtn">
+                    <i class="fab fa-instagram"></i>
+                    <div class="btn-text">
+                        <span class="btn-title">Follow on Instagram</span>
+                        <span class="btn-sub">@rashid_shiaraz</span>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Footer -->
+            <div class="ad-footer">
+                <i class="fas fa-star"></i>
+                <span>Quality Work • Fast Delivery • Best Rates</span>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const overlay = document.getElementById('adOverlay');
+            const closeBtn = document.getElementById('closeAdBtn');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const instagramBtn = document.getElementById('instagramBtn');
+
+            // ===== SHOW AD ON LOAD =====
+            overlay.classList.remove('hidden');
+
+            // ===== CLOSE BUTTON =====
+            closeBtn.addEventListener('click', function() {
+                overlay.classList.add('hidden');
+            });
+
+            // ===== CLICK OUTSIDE TO CLOSE =====
+            overlay.addEventListener('click', function(event) {
+                if (event.target === overlay) {
+                    overlay.classList.add('hidden');
+                }
+            });
+
+            // ===== ESC KEY TO CLOSE =====
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    overlay.classList.add('hidden');
+                }
+            });
+
+            // ===== WHATSAPP BUTTON =====
+            whatsappBtn.addEventListener('click', function() {
+                const message = encodeURIComponent(
+                    'Assalam-o-Alaikum! Mujhe Graphic Design / Website / Software services ki details chahiye.'
+                );
+                window.open('https://wa.me/923498436676?text=' + message, '_blank');
+            });
+
+            // ===== INSTAGRAM BUTTON =====
+            instagramBtn.addEventListener('click', function() {
+                window.open('https://www.instagram.com/rashid_shiaraz/', '_blank');
+            });
+        })();
+    </script>
+
+
+</body>
+</html>
